@@ -41,21 +41,21 @@
 // ********************************************************************
 
 
-signed int __cdecl f0700(int argument1, int *intArrayArgument0, int a3, int *a4)
+signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
 {
 	// Pre-Condition:
-	//    a1: possible input value = [64, 128, 256]
+	//    intArgument0: possible input value = [64, 128, 256]
 	//    intArrayArgument0: is an int[1408] array
 	//        possible input value for each element = [-4095 ... 4095]
-	//    a3: possible input value = [2, 3, 4, 5, 6]
-	//    a4: is an int[116] array
+	//    intArgument1: possible input value = [2, 3, 4, 5, 6]
+	//    intArrayArgument1: is an int[116] array
 	//        possible input value for each element = [0]
 	//
 	// Post-Condition:
-	//    a1: value shouldn't change
+	//    intArgument0: value shouldn't change
 	//    intArrayArgument0: value shouldn't change
-	//    a3: value shouldn't changed
-	//    a4: value can changed
+	//    intArgument1: value shouldn't changed
+	//    intArrayArgument1: value can changed
 
 	
 	int *v4;
@@ -73,26 +73,26 @@ signed int __cdecl f0700(int argument1, int *intArrayArgument0, int a3, int *a4)
 	int a2a;
 
 	v4 = intArrayArgument0;
-	v5 = argument1;
+	v5 = intArgument0;
 	v6 = 0;
-	v7 = intArrayArgument0[argument1];
-	v14 = intArrayArgument0[argument1 - 1];
+	v7 = intArrayArgument0[intArgument0];
+	v14 = intArrayArgument0[intArgument0 - 1];
 	o1 = 0;
 	v9 = -1;
-	intArrayArgument0[argument1 - 1] = 10000;
+	intArrayArgument0[intArgument0 - 1] = 10000;
 	v15 = v7;
-	intArrayArgument0[argument1] = -10000;
+	intArrayArgument0[intArgument0] = -10000;
 	a2a = 0;
 
-	if (argument1 > 0)
+	if (intArgument0 > 0)
 	{
-		v10 = a4;
+		v10 = intArrayArgument1;
 		do
 		{
 			v11 = (int)&v4[v6++];
 			*v10 = v11;
 			v12 = (int)&v4[v6];
-			if (v9 * (*(int *)v11 - *(int *)v12) < a3)
+			if (v9 * (*(int *)v11 - *(int *)v12) < intArgument1)
 			{
 				do
 				{
@@ -101,8 +101,8 @@ signed int __cdecl f0700(int argument1, int *intArrayArgument0, int a3, int *a4)
 					v13 = *(int *)(v12 + 4);
 					v12 += 4;
 					++v6;
-				} while (v9 * (*(int *)*v10 - v13) < a3);
-				v5 = argument1;
+				} while (v9 * (*(int *)*v10 - v13) < intArgument1);
+				v5 = intArgument0;
 			}
 			++v10;
 			v9 = -v9;
