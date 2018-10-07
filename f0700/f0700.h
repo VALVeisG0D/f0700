@@ -62,7 +62,7 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	int v5;
 	int v6;
 	int v7;
-	int o1;
+	int output;
 	int v9;
 	int *v10;
 	int v11;
@@ -77,7 +77,7 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	v6 = 0;
 	v7 = intArrayArgument0[intArgument0];
 	v14 = intArrayArgument0[intArgument0 - 1];
-	o1 = 0;
+	output = 0;
 	v9 = -1;
 	intArrayArgument0[intArgument0 - 1] = 10000;
 	v15 = v7;
@@ -106,14 +106,14 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 			}
 			++v10;
 			v9 = -v9;
-			o1 = a2a++ + 1;
+			output = a2a++ + 1;
 		} while (v6 < v5);
 	}
-	if (o1 % 2)
-		--o1;
+	if (output % 2)
+		--output;
 	v4[v5 - 1] = v14;
 	v4[v5] = v15;
-	return o1;
+	return output;
 }
 
 #endif
