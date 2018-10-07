@@ -57,7 +57,7 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	//    intArgument1: value shouldn't changed
 	//    intArrayArgument1: value can changed
 
-	
+
 	int *v4;
 	int v5;
 	int v6;
@@ -84,35 +84,37 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	intArrayArgument0[intArgument0] = -10000;
 	a2a = 0;
 
-	if (intArgument0 > 0)
+	v10 = intArrayArgument1;
+	do
 	{
-		v10 = intArrayArgument1;
-		do
+		v11 = (int)&v4[v6++];
+		*v10 = v11;
+		v12 = (int)&v4[v6];
+
+		if (v9 * (*(int *)v11 - *(int *)v12) < intArgument1)
 		{
-			v11 = (int)&v4[v6++];
-			*v10 = v11;
-			v12 = (int)&v4[v6];
-			if (v9 * (*(int *)v11 - *(int *)v12) < intArgument1)
+			do
 			{
-				do
-				{
-					if (v9 * *(int *)v12 > v9 * *(int *)*v10)
-						*v10 = v12;
-					v13 = *(int *)(v12 + 4);
-					v12 += 4;
-					++v6;
-				} while (v9 * (*(int *)*v10 - v13) < intArgument1);
-				v5 = intArgument0;
-			}
-			++v10;
-			v9 = -v9;
-			output = a2a++ + 1;
-		} while (v6 < v5);
-	}
+				if (v9 * *(int *)v12 > v9 * *(int *)*v10)
+					*v10 = v12;
+				v13 = *(int *)(v12 + 4);
+				v12 += 4;
+				++v6;
+			} while (v9 * (*(int *)*v10 - v13) < intArgument1);
+			v5 = intArgument0;
+		}
+
+		++v10;
+		v9 = -v9;
+		output = a2a++ + 1;
+	} while (v6 < v5);
+
 	if (output % 2)
 		--output;
+
 	v4[v5 - 1] = v14;
 	v4[v5] = v15;
+
 	return output;
 }
 
