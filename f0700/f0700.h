@@ -60,15 +60,13 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	// Only care about if the value of intArrayArgument1 and output changes.
 
 	int *intPointer4 = intArrayArgument0;
-	int intVariable5 = intArgument0;
 	int intVariable6 = 0;
 	int intVariable9 = -1;
 	int *intPointer10 = intArrayArgument1;
 	int intVariable11;
 	int intVariable12;
 	int intVariable13;
-	int a2a = 0;
-	int output = 0;
+	int output = 1;
 
 	intArrayArgument0[intArgument0 - 1] = 10000;
 	intArrayArgument0[intArgument0] = -10000;
@@ -90,13 +88,12 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 				intVariable12 += 4;
 				++intVariable6;
 			} while (intVariable9 * (*(int *)*intPointer10 - intVariable13) < intArgument1);
-			intVariable5 = intArgument0;
 		}
 
 		++intPointer10;
 		intVariable9 = -intVariable9;
-		output = a2a++ + 1;
-	} while (intVariable6 < intVariable5);
+		output++;
+	} while (intVariable6 < intArgument0);
 
 	if (output % 2)
 		--output;
