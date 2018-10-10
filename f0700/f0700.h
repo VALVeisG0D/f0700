@@ -71,7 +71,6 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	int intVariable11;
 	int intVariable12;
 	int intVariable13;
-	int intVariable14 = intArrayArgument0[intArgument0 - 1];
 	int intVariable15 = intVariable7;
 	int a2a = 0;
 	int output = 0;
@@ -105,9 +104,6 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 
 	if (output % 2)
 		--output;
-
-	intPointer4[intVariable5 - 1] = intVariable14;
-	intPointer4[intVariable5] = intVariable15;
 
 	return output;
 }
