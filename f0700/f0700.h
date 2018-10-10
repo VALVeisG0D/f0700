@@ -62,58 +62,52 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	int v5;
 	int v6;
 	int v7;
-	int output;
-	int v9;
-	int *v10;
-	int v11;
-	int v12;
-	int v13;
-	int v14;
-	int v15;
-	int a2a;
+	int *intPointer4 = intArrayArgument0;
+	int intVariable5 = intArgument0;
+	int intVariable6 = 0;
+	int intVariable7 = intArrayArgument0[intArgument0];
+	int intVariable9 = -1;
+	int *intPointer10 = intArrayArgument1;
+	int intVariable11;
+	int intVariable12;
+	int intVariable13;
+	int intVariable14 = intArrayArgument0[intArgument0 - 1];
+	int intVariable15 = intVariable7;
+	int a2a = 0;
+	int output = 0;
 
-	v4 = intArrayArgument0;
-	v5 = intArgument0;
-	v6 = 0;
-	v7 = intArrayArgument0[intArgument0];
-	v14 = intArrayArgument0[intArgument0 - 1];
-	output = 0;
-	v9 = -1;
 	intArrayArgument0[intArgument0 - 1] = 10000;
-	v15 = v7;
 	intArrayArgument0[intArgument0] = -10000;
-	a2a = 0;
 
-	v10 = intArrayArgument1;
 	do
 	{
-		v11 = (int)&v4[v6++];
-		*v10 = v11;
-		v12 = (int)&v4[v6];
+		intVariable11 = (int)&intPointer4[intVariable6++];
+		*intPointer10 = intVariable11;
+		intVariable12 = (int)&intPointer4[intVariable6];
 
-		if (v9 * (*(int *)v11 - *(int *)v12) < intArgument1)
+		if (intVariable9 * (*(int *)intVariable11 - *(int *)intVariable12) < intArgument1)
 		{
 			do
 			{
-				if (v9 * *(int *)v12 > v9 * *(int *)*v10)
-					*v10 = v12;
-				v13 = *(int *)(v12 + 4);
-				v12 += 4;
-				++v6;
-			} while (v9 * (*(int *)*v10 - v13) < intArgument1);
-			v5 = intArgument0;
+				if (intVariable9 * *(int *)intVariable12 > intVariable9 * *(int *)*intPointer10)
+					*intPointer10 = intVariable12;
+				intVariable13 = *(int *)(intVariable12 + 4);
+				intVariable12 += 4;
+				++intVariable6;
+			} while (intVariable9 * (*(int *)*intPointer10 - intVariable13) < intArgument1);
+			intVariable5 = intArgument0;
 		}
 
-		++v10;
-		v9 = -v9;
+		++intPointer10;
+		intVariable9 = -intVariable9;
 		output = a2a++ + 1;
-	} while (v6 < v5);
+	} while (intVariable6 < intVariable5);
 
 	if (output % 2)
 		--output;
 
-	v4[v5 - 1] = v14;
-	v4[v5] = v15;
+	intPointer4[intVariable5 - 1] = intVariable14;
+	intPointer4[intVariable5] = intVariable15;
 
 	return output;
 }
