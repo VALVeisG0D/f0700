@@ -59,13 +59,9 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 
 	// Only care about if the value of intArrayArgument1 and output changes.
 
-	int *intPointer4 = intArrayArgument0;
-	int intVariable6 = 0;
-	int intVariable9 = -1;
-	int *intPointer10 = intArrayArgument1;
-	int intVariable11;
-	int intVariable12;
-	int intVariable13;
+	int arrayIndex0 = 0;
+	int arrayIndex1 = 0;
+	int signChange = -1;
 	int output = 1;
 
 	intArrayArgument0[intArgument0 - 1] = 10000;
@@ -73,32 +69,104 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 
 	do
 	{
-		intVariable11 = (int)&intPointer4[intVariable6++];
-		*intPointer10 = intVariable11;
-		intVariable12 = (int)&intPointer4[intVariable6];
+		intArrayArgument1[arrayIndex1] = intArrayArgument0[arrayIndex0++];
 
-		if (intVariable9 * (*(int *)intVariable11 - *(int *)intVariable12) < intArgument1)
+		// see if difference between two adjacent elements is bigger than intargument1
+		if (signChange * (intArrayArgument0[arrayIndex0 - 1] - intArrayArgument0[arrayIndex0]) < intArgument1)
 		{
 			do
 			{
-				if (intVariable9 * *(int *)intVariable12 > intVariable9 * *(int *)*intPointer10)
-					*intPointer10 = intVariable12;
+				if (signChange * intArrayArgument0[arrayIndex0] > signChange * intArrayArgument1[arrayIndex1])
+					intArrayArgument1[arrayIndex1] = intArrayArgument0[arrayIndex0];
 
-				intVariable13 = *(int *)(intVariable12 + 4);
-				intVariable12 += 4;
-				++intVariable6;
-			} while (intVariable9 * (*(int *)*intPointer10 - intVariable13) < intArgument1);
+			} while (signChange * (intArrayArgument1[arrayIndex1] - intArrayArgument0[++arrayIndex0]) < intArgument1);
 		}
 
-		++intPointer10;
-		intVariable9 = -intVariable9;
-		output++;
-	} while (intVariable6 < intArgument0);
+		++arrayIndex1;
+		signChange = -signChange;
+		++output;
+	} while (arrayIndex0 < intArgument0);
 
 	if (output % 2)
 		--output;
 
 	return output;
 }
+
+signed int __cdecl f0701(int a1, int *a2, int a3, int *a4)
+{
+	// Pre-Condition:
+	//    a1: possible input value = [64, 128, 256]
+	//    a2: is an int[1408] array
+	//        possible input value for each element = [-4095 ... 4095]
+	//    a3: possible input value = [2, 3, 4, 5, 6]
+	//    a4: is an int[116] array
+	//        possible input value for each element = [0]
+	//
+	// Post-Condition:
+	//    a1: value shouldn't change
+	//    a2: value shouldn't change
+	//    a3: value shouldn't changed
+	//    a4: value can changed
+
+
+	int *v4;
+	int v5;
+	int v6;
+	int v7;
+	int o1;
+	int v9;
+	int *v10;
+	int v11;
+	int v12;
+	int v13;
+	int v14;
+	int v15;
+	int a2a;
+
+	v4 = a2;
+	v5 = a1;
+	v6 = 0;
+	v7 = a2[a1];
+	v14 = a2[a1 - 1];
+	o1 = 0;
+	v9 = -1;
+	a2[a1 - 1] = 10000;
+	v15 = v7;
+	a2[a1] = -10000;
+	a2a = 0;
+
+	if (a1 > 0)
+	{
+		v10 = a4;
+		do
+		{
+			v11 = (int)&v4[v6++];
+			*v10 = v11;
+			v12 = (int)&v4[v6];
+			if (v9 * (*(int *)v11 - *(int *)v12) < a3)
+			{
+				do
+				{
+					if (v9 * *(int *)v12 > v9 * *(int *)*v10)
+						*v10 = v12;
+					v13 = *(int *)(v12 + 4);
+					v12 += 4;
+					++v6;
+				} while (v9 * (*(int *)*v10 - v13) < a3);
+				v5 = a1;
+			}
+			++v10;
+			v9 = -v9;
+			o1 = a2a++ + 1;
+		} while (v6 < v5);
+	}
+	if (o1 % 2)
+		--o1;
+	v4[v5 - 1] = v14;
+	v4[v5] = v15;
+	return o1;
+}
+
 
 #endif
