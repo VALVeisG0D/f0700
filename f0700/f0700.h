@@ -40,7 +40,6 @@
 //
 // ********************************************************************
 
-
 signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
 {
 	// Pre-Condition:
