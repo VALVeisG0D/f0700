@@ -3,34 +3,42 @@
 
 int main()
 {
+	int diff = 0;
 	srand(time(0));
 
-	for (int i = 0; i < 5400; ++i)
+	printf("%s\n\n", "Testing...");
+
+	for (int a1 = 64; a1 <= 256; a1 *= 2)
 	{
-		int a1 = 128;
-		int a2[1408];
-
-		for (int j = 0; j < 1407; ++j)
+		for (int a3 = 2; a3 <= 6; ++a3)
 		{
-			int temp = rand();
+			for (int i = 0; i < 5000; ++i)
+			{
+				int a2[1408];
 
-			if (rand() % 2)
-				temp = -temp;
+				for (int j = 0; j < 1407; ++j)
+				{
+					int temp = rand();
 
-			if (temp <= 4095 && temp >= -4095)
-				a2[j] = temp;
-			else
-				a2[j] = 0;
+					if (rand() % 2)
+						temp = -temp;
+
+					if (temp <= 4095 && temp >= -4095)
+						a2[j] = temp;
+					else
+						a2[j] = 0;
+				}
+
+				int a4[116] = { 0 };
+				int a5[116] = { 0 };
+
+				diff += f0700(a1, a2, a3, a4) - f0701(a1, a2, a3, a5);
+			}
 		}
-
-		int a3 = 6;
-		int a4[116] = { 0 };
-		int a5[116] = { 0 };
-
-		printf("%d\n", f0700(a1, a2, a3, a4));
-		printf("%d\n\n", f0701(a1, a2, a3, a5));
 	}
 
+	printf("%s%d\n", "Number of times diverged: ", diff);
+	printf("%s", "Press enter to exit.");
 	fgetc(stdin);
 
 	return 0;
