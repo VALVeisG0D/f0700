@@ -6,7 +6,7 @@ int main()
 	int diff = 0;
 	srand(time(0));
 
-	printf("%s\n\n", "Testing...");
+	printf("%s\n", "Testing...");
 
 	for (int a1 = 64; a1 <= 256; a1 *= 2)
 	{
@@ -32,12 +32,13 @@ int main()
 				int a4[116] = { 0 };
 				int a5[116] = { 0 };
 
-				diff += f0700(a1, a2, a3, a4) - f0701(a1, a2, a3, a5);
+				if (f0700(a1, a2, a3, a4) - f0701(a1, a2, a3, a5))
+					++diff;
 			}
 		}
 	}
 
-	printf("%s%d\n", "Number of times diverged: ", diff);
+	printf("%s%d\n", "Number of times test failed (New output does not match original output): ", diff);
 	printf("%s", "Press enter to exit.");
 	fgetc(stdin);
 
