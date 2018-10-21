@@ -56,21 +56,31 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	//    intArgument1: value shouldn't changed
 	//    intArrayArgument1: value can changed
 
-	// Only care about if the value of intArrayArgument1 and output changes.
+	int arrayIndex0 = 0;	//	Array index for intArrayArgument0.
+	int arrayIndex1 = 0;	//	Array index for intArrayArgument1.
+	int signChange = -1;	//	Switch value between -1 and 1 after every 
+							//		iteration of the outer do while loop
+							//		(This effects the condition of the inner 
+							//		if and do while statements)
+	int output = 1;			//	The value to return from the function.
 
-	int arrayIndex0 = 0;
-	int arrayIndex1 = 0;
-	int signChange = -1;
-	int output = 1;
-
+	//	Sets the condition to exit out of the inner do while loop
+	//		without fail
 	intArrayArgument0[intArgument0 - 1] = 10000;
 	intArrayArgument0[intArgument0] = -10000;
 
+	//	-Initially copy an element from intArrayArgument0 to intArrayArgument1. 
+	//	-Then traverse intArrayArgument0 looking for an element with a larger value than that which was copied to intArrayArgument1. 
+	//	-If an element in intArrayArgument0 is found to be larger than the copied value in intArrayArgument1, overwrite the copied
+	//		value in intArrayArgument1 with the larger value. 
+	//	-Repeat until the inner do while loop condition fails.
+	//	-The number of iterations of the inner do while loop determines how often the outer do while loop iterates
+	//		and thus, how often output is incremented and how much of the elements in intArrayArgument1 contains values from
+	//		intArrayArgument0.
 	do
 	{
 		intArrayArgument1[arrayIndex1] = intArrayArgument0[arrayIndex0++];
 
-		// see if difference between two adjacent elements is bigger than intargument1
 		if (signChange * (intArrayArgument0[arrayIndex0 - 1] - intArrayArgument0[arrayIndex0]) < intArgument1)
 		{
 			do
@@ -86,12 +96,14 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 		++output;
 	} while (arrayIndex0 < intArgument0);
 
+	//	If output is odd, decrement output by 1
 	if (output % 2)
 		--output;
 
 	return output;
 }
 
+//	Original copy of the code for comparison and testing
 signed int __cdecl f0701(int a1, int *a2, int a3, int *a4)
 {
 	// Pre-Condition:
