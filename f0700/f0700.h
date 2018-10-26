@@ -120,7 +120,6 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	//    intArgument1: value shouldn't changed
 	//    intArrayArgument1: value can changed
 
-	int *intPointer4 = intArrayArgument0;
 	int intVariable6 = 0;
 	int intVariable9 = -1;
 	int *intPointer10 = intArrayArgument1;
@@ -133,9 +132,9 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	
 	do
 	{
-		intVariable11 = (int)&intPointer4[intVariable6++];
+		intVariable11 = (int)&intArrayArgument0[intVariable6++];
 		*intPointer10 = intVariable11;
-		intVariable12 = (int)&intPointer4[intVariable6];
+		intVariable12 = (int)&intArrayArgument0[intVariable6];
 
 		if (intVariable9 * (intArrayArgument0[intVariable6 - 1] - intArrayArgument0[intVariable6]) < intArgument1)
 		{
