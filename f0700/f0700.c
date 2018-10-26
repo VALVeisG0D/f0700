@@ -4,6 +4,9 @@
 int main()
 {
 	int numTestFailed = 0;
+	int intArrayArgument0[1408];
+	int intArrayArgument1[116] = { 0 };
+	int intArrayArgument1Copy[116] = { 0 };
 	srand(time(0));
 
 	printf("%s\n", "Testing...");
@@ -13,15 +16,14 @@ int main()
 	//	Initialize intArrayArgument1 and its copy with 116 0s.
 	//	Check if the output of the updated/refactored code deviates from the original. (The test failes if it does)
 	//	Repeat the test for 5000 times for each combination of intArgument0 and intArgument1
-	for (int intArgument0 = 64; intArgument0 <= 256; intArgument0 *= 2)
+	//for (int intArgument0 = 64; intArgument0 <= 256; intArgument0 *= 2)
+	for (int intArgument0 = 1; intArgument0 <= 6; ++intArgument0) //intArgument0 cannot be 0
 	{
 		for (int intArgument1 = 2; intArgument1 <= 6; ++intArgument1)
 		{
-			for (int i = 0; i < 5000; ++i)
+			for (int i = 0; i < 1000; ++i)
 			{
-				int intArrayArgument0[1408];
-
-				for (int j = 0; j < 1407; ++j)
+				for (int j = 0; j < 1408; ++j)
 				{
 					int temp = rand();
 
@@ -34,15 +36,21 @@ int main()
 						intArrayArgument0[j] = 0;
 				}
 
-				int intArrayArgument1[116] = { 0 };
-				int intArrayArgument1Copy[116] = { 0 };
-
 				if (f0700(intArgument0, intArrayArgument0, intArgument1, intArrayArgument1) 
 					- f0701(intArgument0, intArrayArgument0, intArgument1, intArrayArgument1Copy))
 					++numTestFailed;
 			}
 		}
 	}
+
+	for (int i = 0; i < 116; ++i)
+		if (intArrayArgument1[i] != intArrayArgument1Copy[i])
+		{
+			printf("%s\n", "intArrayArgument1 mismatch, test failed");
+			fgetc(stdin);
+
+			return 1;
+		}
 
 	printf("%s%d\n", "Number of times test failed (New output does not match original output): ", numTestFailed);
 	printf("%s", "Press enter to exit.");

@@ -40,7 +40,7 @@
 //
 // ********************************************************************
 
-signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
+signed int __cdecl f07080(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
 {
 	// Pre-Condition:
 	//    intArgument0: possible input value = [64, 128, 256]
@@ -62,7 +62,7 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 							//		iteration of the outer do while loop
 							//		(This effects the condition of the inner 
 							//		if and do while statements)
-	int output = 1;			//	The value to return from the function.
+	int output = 0;			//	The value to return from the function.
 
 	//	Sets the condition to exit out of the inner do while loop
 	//		without fail
@@ -97,6 +97,62 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	} while (arrayIndex0 < intArgument0);
 
 	//	If output is odd, decrement output by 1
+	if (output % 2)
+		--output;
+
+	return output;
+}
+
+
+signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
+{
+	// Pre-Condition:
+	//    intArgument0: possible input value = [64, 128, 256]
+	//    intArrayArgument0: is an int[1408] array
+	//        possible input value for each element = [-4095 ... 4095]
+	//    intArgument1: possible input value = [2, 3, 4, 5, 6]
+	//    intArrayArgument1: is an int[116] array
+	//        possible input value for each element = [0]
+	//
+	// Post-Condition:
+	//    intArgument0: value shouldn't change
+	//    intArrayArgument0: value shouldn't change
+	//    intArgument1: value shouldn't changed
+	//    intArrayArgument1: value can changed
+
+	int *intPointer4 = intArrayArgument0;
+	int intVariable6 = 0;
+	int intVariable9 = -1;
+	int *intPointer10 = intArrayArgument1;
+	int intVariable11;
+	int intVariable12;
+	int output = 0;
+
+	intArrayArgument0[intArgument0 - 1] = 10000;
+	intArrayArgument0[intArgument0] = -10000;
+	
+	do
+	{
+		intVariable11 = (int)&intPointer4[intVariable6++];
+		*intPointer10 = intVariable11;
+		intVariable12 = (int)&intPointer4[intVariable6];
+
+		if (intVariable9 * (intArrayArgument0[intVariable6 - 1] - intArrayArgument0[intVariable6]) < intArgument1)
+		{
+			do
+			{
+				if (intVariable9 * intArrayArgument0[intVariable6] > intVariable9 * *(int *)*intPointer10)
+					*intPointer10 = intVariable12;
+
+				++intVariable6;
+			} while (intVariable9 * (*(int *)*intPointer10 - *(int *)(intVariable12 += 4)) < intArgument1);
+		}
+
+		++intPointer10;
+		intVariable9 = -intVariable9;
+		++output;
+	} while (intVariable6 < intArgument0);
+
 	if (output % 2)
 		--output;
 
