@@ -123,7 +123,6 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	int intVariable6 = 0;
 	int intVariable9 = -1;
 	int *intPointer10 = intArrayArgument1;
-	int intVariable11;
 	int intVariable12;
 	int output = 0;
 
@@ -132,8 +131,7 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	
 	do
 	{
-		intVariable11 = (int)&intArrayArgument0[intVariable6++];
-		*intPointer10 = intVariable11;
+		*intPointer10 = (int)&intArrayArgument0[intVariable6++];
 		intVariable12 = (int)&intArrayArgument0[intVariable6];
 
 		if (intVariable9 * (intArrayArgument0[intVariable6 - 1] - intArrayArgument0[intVariable6]) < intArgument1)
