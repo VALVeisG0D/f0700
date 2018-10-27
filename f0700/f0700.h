@@ -131,8 +131,8 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	
 	do
 	{
-		*intPointer10 = (int)&intArrayArgument0[intVariable6++];
-		intVariable12 = (int)&intArrayArgument0[intVariable6];
+		*intPointer10 = (int)&intArrayArgument0[intVariable6];
+		intVariable12 = (int)&intArrayArgument0[++intVariable6];
 
 		if (intVariable9 * (intArrayArgument0[intVariable6 - 1] - intArrayArgument0[intVariable6]) < intArgument1)
 		{
