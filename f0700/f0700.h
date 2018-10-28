@@ -40,7 +40,7 @@
 //
 // ********************************************************************
 
-signed int __cdecl f07080(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
+signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
 {
 	// Pre-Condition:
 	//    intArgument0: possible input value = [64, 128, 256]
@@ -79,57 +79,6 @@ signed int __cdecl f07080(int intArgument0, int *intArrayArgument0, int intArgum
 	//		intArrayArgument0.
 	do
 	{
-		intArrayArgument1[arrayIndex1] = intArrayArgument0[arrayIndex0++];
-
-		if (signChange * (intArrayArgument0[arrayIndex0 - 1] - intArrayArgument0[arrayIndex0]) < intArgument1)
-		{
-			do
-			{
-				if (signChange * intArrayArgument0[arrayIndex0] > signChange * intArrayArgument1[arrayIndex1])
-					intArrayArgument1[arrayIndex1] = intArrayArgument0[arrayIndex0];
-
-			} while (signChange * (intArrayArgument1[arrayIndex1] - intArrayArgument0[++arrayIndex0]) < intArgument1);
-		}
-
-		++arrayIndex1;
-		signChange = -signChange;
-		++output;
-	} while (arrayIndex0 < intArgument0);
-
-	//	If output is odd, decrement output by 1
-	if (output % 2)
-		--output;
-
-	return output;
-}
-
-
-signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgument1, int *intArrayArgument1)
-{
-	// Pre-Condition:
-	//    intArgument0: possible input value = [64, 128, 256]
-	//    intArrayArgument0: is an int[1408] array
-	//        possible input value for each element = [-4095 ... 4095]
-	//    intArgument1: possible input value = [2, 3, 4, 5, 6]
-	//    intArrayArgument1: is an int[116] array
-	//        possible input value for each element = [0]
-	//
-	// Post-Condition:
-	//    intArgument0: value shouldn't change
-	//    intArrayArgument0: value shouldn't change
-	//    intArgument1: value shouldn't changed
-	//    intArrayArgument1: value can changed
-
-	int arrayIndex0 = 0;
-	int arrayIndex1 = 0;
-	int signChange = -1;	
-	int output = 0;
-
-	intArrayArgument0[intArgument0 - 1] = 10000;
-	intArrayArgument0[intArgument0] = -10000;
-	
-	do
-	{
 		intArrayArgument1[arrayIndex1] = (int)&intArrayArgument0[arrayIndex0++];
 
 		if (signChange * (intArrayArgument0[arrayIndex0 - 1] - intArrayArgument0[arrayIndex0]) < intArgument1)
@@ -146,7 +95,8 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 		signChange = -signChange;
 		++output;
 	} while (arrayIndex0 < intArgument0);
-
+	
+	//	If output is odd, decrement output by 1
 	if (output % 2)
 		--output;
 
