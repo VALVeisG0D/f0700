@@ -16,12 +16,11 @@ int main()
 	//	Initialize intArrayArgument1 and its copy with 116 0s.
 	//	Check if the output of the updated/refactored code deviates from the original. (The test failes if it does)
 	//	Repeat the test for 5000 times for each combination of intArgument0 and intArgument1
-	//for (int intArgument0 = 64; intArgument0 <= 256; intArgument0 *= 2)
-	for (int intArgument0 = 1; intArgument0 <= 6; ++intArgument0) //intArgument0 cannot be 0
+	for (int intArgument0 = 64; intArgument0 <= 256; intArgument0 *= 2)
 	{
 		for (int intArgument1 = 2; intArgument1 <= 6; ++intArgument1)
 		{
-			for (int i = 0; i < 1000; ++i)
+			for (int i = 0; i < 2000; ++i)
 			{
 				for (int j = 0; j < 1408; ++j)
 				{

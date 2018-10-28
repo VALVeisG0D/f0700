@@ -120,10 +120,9 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	//    intArgument1: value shouldn't changed
 	//    intArrayArgument1: value can changed
 
-	int intVariable6 = 0;
-	int intVariable9 = -1;
-	int arrayIndex1 = 0;
 	int arrayIndex0 = 0;
+	int arrayIndex1 = 0;
+	int signChange = -1;	
 	int output = 0;
 
 	intArrayArgument0[intArgument0 - 1] = 10000;
@@ -131,24 +130,22 @@ signed int __cdecl f0700(int intArgument0, int *intArrayArgument0, int intArgume
 	
 	do
 	{
-		intArrayArgument1[arrayIndex1] = (int)&intArrayArgument0[intVariable6];
-		arrayIndex0 = ++intVariable6;
+		intArrayArgument1[arrayIndex1] = (int)&intArrayArgument0[arrayIndex0++];
 
-		if (intVariable9 * (intArrayArgument0[intVariable6 - 1] - intArrayArgument0[intVariable6]) < intArgument1)
+		if (signChange * (intArrayArgument0[arrayIndex0 - 1] - intArrayArgument0[arrayIndex0]) < intArgument1)
 		{
 			do
 			{
-				if (intVariable9 * intArrayArgument0[intVariable6] > intVariable9 * *(int *)intArrayArgument1[arrayIndex1])
+				if (signChange * intArrayArgument0[arrayIndex0] > signChange * *(int *)intArrayArgument1[arrayIndex1])
 					intArrayArgument1[arrayIndex1]= (int)&intArrayArgument0[arrayIndex0];
 
-				++intVariable6;
-			} while (intVariable9 * (*(int *)intArrayArgument1[arrayIndex1] - intArrayArgument0[++arrayIndex0]) < intArgument1);
+			} while (signChange * (*(int *)intArrayArgument1[arrayIndex1] - intArrayArgument0[++arrayIndex0]) < intArgument1);
 		}
 
 		++arrayIndex1;
-		intVariable9 = -intVariable9;
+		signChange = -signChange;
 		++output;
-	} while (intVariable6 < intArgument0);
+	} while (arrayIndex0 < intArgument0);
 
 	if (output % 2)
 		--output;
